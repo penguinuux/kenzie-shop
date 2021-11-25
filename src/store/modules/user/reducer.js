@@ -1,4 +1,4 @@
-import { LOGOOUT, SIGN_IN } from "./actionTypes";
+import { LOGOUT, SIGN_IN } from "./actionTypes";
 
 const token = JSON.parse(localStorage.getItem("@kenzieShop:token")) || "";
 
@@ -12,7 +12,7 @@ const userReducer = (state = defaultState, action) => {
   switch (action.type) {
     case SIGN_IN:
       return { ...state, token };
-    case LOGOOUT:
+    case LOGOUT:
       return { ...state, token };
     default:
       return state;
