@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   const onSubmit = (data) =>
-    dispatch(userSigninThunk(data, successMessage, errorMessage));
+    dispatch(userSigninThunk(data, history, successMessage, errorMessage));
 
   const signupButtonHandler = () => {
     return history.push("/signup");

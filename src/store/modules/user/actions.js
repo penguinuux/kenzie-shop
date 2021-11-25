@@ -1,14 +1,14 @@
-import { SIGN_IN, LOGOUT } from "./actionTypes";
-export const userSignin = (token) => {
+import { SIGN_IN, LOGOUT, SIGN_UP } from "./actionTypes";
+export const userSignin = (user) => {
   return {
     type: SIGN_IN,
-    token,
+    user,
   };
 };
 
-export const userLogout = (token) => {
+export const userLogout = (user) => {
   return {
     type: LOGOUT,
-    token,
+    user,
   };
 };

@@ -1,29 +1,37 @@
 import { userSignin, userLogout } from "./actions";
-import { Redirect } from "react-router";
 
 import api from "../../../services/api";
 
 export const userSigninThunk =
-  (data, successMessage, errorMessage) => (dispatch) => {
+  (data, history, successMessage, errorMessage) => (dispatch) => {
     api
       .post("/sessions/", data)
       .then((response) => {
+        const { name, email, contact, created_at } = response.data.user;
+
         const token = response.data.token;
+        const profile = { name, email, contact, created_at };
+
+        const user = {
+          profile,
+          token,
+        };
 
         localStorage.setItem("@kenzieShop:token", token);
+        localStorage.setItem("@kenzieShop:user", JSON.stringify(profile));
 
-        dispatch(userSignin(token));
+        dispatch(userSignin(user));
         successMessage("Você agora está logado");
-        return <Redirect to="/" />;
+        history.push("/");
       })
       .catch((err) => errorMessage("Usuário e/ou senha incorretos"));
   };
 
-export const userLogoutThunk = () => (dispatch) => {
+export const userLogoutThunk = (history) => (dispatch) => {
   const token = "";
 
   localStorage.clear();
 
   dispatch(userLogout(token));
-  return <Redirect to="/" />;
+  history.push("/");
 };

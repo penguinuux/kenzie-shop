@@ -1,19 +1,20 @@
 import { LOGOUT, SIGN_IN } from "./actionTypes";
 
-const token = JSON.parse(localStorage.getItem("@kenzieShop:token")) || "";
+const token = localStorage.getItem("@kenzieShop:token") || "";
 
 const defaultState = {
+  profile: {},
   token,
 };
 
 const userReducer = (state = defaultState, action) => {
-  const { token } = action;
+  const { user } = action;
 
   switch (action.type) {
     case SIGN_IN:
-      return { ...state, token };
+      return { ...state, ...user };
     case LOGOUT:
-      return { ...state, token };
+      return { ...state, ...user };
     default:
       return state;
   }
