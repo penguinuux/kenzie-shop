@@ -1,4 +1,6 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
+
+import Route from "./Route";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
