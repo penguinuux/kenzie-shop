@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, REMOVE_PRODUCT } from "./actionTypes";
+import { ADD_PRODUCT, CLEAR_CART, REMOVE_PRODUCT } from "./actionTypes";
 
 const addProduct = (product) => {
   return {
@@ -14,4 +14,10 @@ const removeProduct = (newList) => {
   };
 };
 
-export { addProduct, removeProduct };
+const clearCart = () => {
+  return {
+    type: CLEAR_CART,
+  };
+};
+
+export { addProduct, removeProduct, clearCart };

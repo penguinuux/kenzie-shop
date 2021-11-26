@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, REMOVE_PRODUCT } from "./actionTypes";
+import { ADD_PRODUCT, CLEAR_CART, REMOVE_PRODUCT } from "./actionTypes";
 const defaultState = JSON.parse(localStorage.getItem("@kenzieShop:cart")) || [];
 
 const cartReducer = (state = defaultState, action) => {
@@ -9,6 +9,8 @@ const cartReducer = (state = defaultState, action) => {
     case REMOVE_PRODUCT:
       const { newList } = action;
       return [...newList];
+    case CLEAR_CART:
+      return [];
     default:
       return state;
   }
