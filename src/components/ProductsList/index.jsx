@@ -12,14 +12,17 @@ const ProductsList = () => {
       justify="center"
       sx={{ backgroundColor: "Background", py: 3, pt: 13 }}
     >
-      {products.map((product) => (
-        <Grid item xs={12} sm={6} md={3} lg={3} align="center">
-          <ProductCard
-            description={product.description}
-            image={product.image}
-            title={product.title}
-            rating={product.rating}
-          />
+      {products.map((product, index) => (
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          md={3}
+          lg={3}
+          align="center"
+          key={index + product.id}
+        >
+          <ProductCard product={product} />
         </Grid>
       ))}
     </Grid>

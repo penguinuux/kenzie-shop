@@ -27,11 +27,12 @@ export const userSigninThunk =
       .catch((err) => errorMessage("Usuário e/ou senha incorretos"));
   };
 
-export const userLogoutThunk = (history) => (dispatch) => {
+export const userLogoutThunk = (history, infoMessage) => (dispatch) => {
   const token = "";
 
   localStorage.clear();
 
   dispatch(userLogout(token));
+  infoMessage("Você se desconectou de sua conta");
   history.push("/");
 };

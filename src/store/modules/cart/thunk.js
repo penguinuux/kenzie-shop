@@ -1,24 +1,26 @@
 import { addProduct, removeProduct } from "./actions";
 
 // eslint-disable-next-line no-unused-vars
-const addProductThunk = (product) => (dispatch, getState) => {
-  const list = JSON.parse(localStorage.getItem("@kenzieShop:cart")) || [];
+export const addProductThunk =
+  (product, successMessage) => (dispatch, getState) => {
+    const list = JSON.parse(localStorage.getItem("@kenzieShop:cart")) || [];
 
-  const newList = [...list, product];
+    const newList = [...list, product];
 
-  localStorage.setItem("@kenzieShop:cart", newList);
+    localStorage.setItem("@kenzieShop:cart", JSON.stringify(newList));
 
-  dispatch(addProduct(product));
-};
+    dispatch(addProduct(product));
+    successMessage("Produto adicionado");
+  };
 
 // eslint-disable-next-line no-unused-vars
-const removeProductThunk = (product) => (dispatch, getState) => {
-  localStorage.clear();
+export const removeProductThunk =
+  (product, successMessage) => (dispatch, getState) => {
+    const { cart } = getState();
 
-  const { cart } = getState();
+    const clearedList = cart.filter((element) => element.id !== product);
+    localStorage.setItem("@kenzieShop:cart", JSON.stringify(clearedList));
 
-  const clearedList = cart.filter((element) => element.name !== product);
-  localStorage.setItem("@kenzieShop:cart", clearedList);
-
-  return dispatch(removeProduct(clearedList));
-};
+    dispatch(removeProduct(clearedList));
+    successMessage("Produto removido");
+  };
