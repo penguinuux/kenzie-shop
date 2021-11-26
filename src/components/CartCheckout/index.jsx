@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { Box, Button, Paper, Typography } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearCart } from "../../store/modules/cart/actions";
 
 const CartCheckout = ({ quantity, totalValue = "R$ 0,00" }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const token = localStorage.getItem("@kenzieShop:token") || "";
   const cartList = useSelector((store) => store.cart);
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -21,7 +24,7 @@ const CartCheckout = ({ quantity, totalValue = "R$ 0,00" }) => {
   const handleCheckoutButton = () => {
     if (token) {
       toast.success("Pedido realizado com sucesso!");
-      localStorage.setItem("@kenzieShop:cart", JSON.stringify([]));
+      dispatch(clearCart());
       history.push("/");
     } else {
       toast.error("Faça login para finalizar a compra", {
