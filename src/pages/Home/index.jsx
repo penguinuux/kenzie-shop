@@ -1,4 +1,3 @@
-import Cart from "../../components/Cart";
 import Header from "../../components/Header";
 import ProductsList from "../../components/ProductsList";
 
@@ -7,7 +6,6 @@ const Home = () => {
     <>
       <Header />
       <ProductsList />
-      <Cart />
     </>
   );
 };

@@ -2,77 +2,66 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   AppBar,
-  Avatar,
+  Badge,
   Box,
   IconButton,
-  Menu,
-  MenuItem,
   Toolbar,
+  Typography,
 } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import { AccountCircle, ShoppingCartOutlined } from "@mui/icons-material";
 
 const primary = blue[400];
 
-const Header = ({ name, avatar_url, setAuthenticated }) => {
-  const [anchor, setAnchor] = useState(null);
+const Header = () => {
   const history = useHistory();
-
-  const handleMenu = (e) => {
-    setAnchor(e.currentTarget);
-  };
-
-  const togleMenu = () => {
-    setAnchor(null);
-  };
-
-  const handleProfile = () => {
-    return undefined;
-  };
-
-  const handleExit = () => {
-    localStorage.clear();
-    setAuthenticated(false);
-    history.push("/");
-  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: primary, height: "10vh" }}
-      >
+      <AppBar sx={{ backgroundColor: primary, height: 84 }}>
         <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <IconButton
-            size="large"
-            aria-haspopup="true"
-            onClick={handleMenu}
-            color="inherit"
+          <Typography
+            variant="h5"
+            component="h1"
+            sx={{ flexGrow: 1, textAlign: "left" }}
           >
-            <Avatar size="larger" alt={name} src={avatar_url} />
-          </IconButton>
-          <Menu
-            id="menu-appbar"
-            anchorEl={anchor}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "right",
+            KenzieShop
+          </Typography>
+          <Box
+            component="div"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              "&:hover": {
+                cursor: "pointer",
+                opacity: "0.8",
+              },
             }}
-            keepMounted
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "right",
-            }}
-            open={Boolean(anchor)}
-            onClose={togleMenu}
           >
-            <MenuItem
-              onClick={handleProfile}
-              sx={{ display: { xs: "flex", lg: "none" } }}
+            <AccountCircle fontSize="large" />
+            <Typography
+              variant="h6"
+              component="h3"
+              sx={{
+                fontSize: "0.8rem",
+                width: 100,
+                height: "8vh",
+                lineHeight: "1.2",
+                display: "flex",
+                alignItems: "center",
+              }}
             >
-              Perfil
-            </MenuItem>
-            <MenuItem onClick={handleExit}>Sair</MenuItem>
-          </Menu>
+              olá, faça seu login ou cadastre-se
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", mr: 2 }}>
+            <IconButton>
+              <Badge badgeContent={4} color="error">
+                <ShoppingCartOutlined />
+              </Badge>
+            </IconButton>
+            <Typography sx={{ ml: 1 }}>Cart</Typography>
+          </Box>
         </Toolbar>
       </AppBar>
     </Box>

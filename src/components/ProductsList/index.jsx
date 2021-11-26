@@ -10,7 +10,7 @@ const ProductsList = () => {
       container
       spacing={2}
       justify="center"
-      sx={{ backgroundColor: "Background", py: 3 }}
+      sx={{ backgroundColor: "Background", py: 3, pt: 13 }}
     >
       {products.map((product) => (
         <Grid item xs={12} sm={6} md={3} lg={3} align="center">
