@@ -21,7 +21,7 @@ const CartCheckout = ({ quantity, totalValue = "R$ 0,00" }) => {
   const handleCheckoutButton = () => {
     if (token) {
       toast.success("Pedido realizado com sucesso!");
-      localStorage.setItem("@kenzieShop:cart", []);
+      localStorage.setItem("@kenzieShop:cart", JSON.stringify([]));
       history.push("/");
     } else {
       toast.error("Faça login para finalizar a compra", {
