@@ -36,8 +36,11 @@ const Header = ({ name, avatar_url, setAuthenticated }) => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, mb: 6 }}>
-      <AppBar position="static" sx={{ backgroundColor: primary }}>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: primary, height: "10vh" }}
+      >
         <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
           <IconButton
             size="large"
