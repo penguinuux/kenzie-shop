@@ -12,7 +12,14 @@ import {
   Typography,
 } from "@mui/material";
 
-const ProductCard = ({ description, image, title, price, rating }) => {
+const ProductCard = ({
+  description,
+  image,
+  title,
+  price,
+  rating,
+  isOnCart = false,
+}) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -34,11 +41,13 @@ const ProductCard = ({ description, image, title, price, rating }) => {
         </Box>
         <Typography variant="body2">{description}</Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <Button size="medium" variant="contained" fullWidth>
-          Add to cart
-        </Button>
-      </CardActions>
+      {!isOnCart && (
+        <CardActions disableSpacing>
+          <Button size="medium" variant="contained" fullWidth>
+            Add to cart
+          </Button>
+        </CardActions>
+      )}
       <CardActions disableSpacing sx={{ justifyContent: "flex-end" }}>
         <Divider light variant="middle" />
         <IconButton aria-label="add to favorites">
